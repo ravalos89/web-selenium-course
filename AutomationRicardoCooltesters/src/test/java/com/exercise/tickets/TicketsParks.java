@@ -15,4 +15,5 @@ public abstract class TicketsParks {
 	public abstract double getTicketPrice();
 	public abstract void printPriceDay();
 	public abstract void printPriceDay(String keyManagerAuth, String priceDay);
+
 }
