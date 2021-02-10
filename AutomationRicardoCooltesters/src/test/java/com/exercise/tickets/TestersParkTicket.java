@@ -19,6 +19,17 @@ public class TestersParkTicket extends TicketsParks{
 		park = "Testers Park - ";
 	}
 	
+	public TestersParkTicket(double price, int personAge, boolean studentID, int discont) {
+		super();
+		adultTicket = price - discont;
+		childTicket = (price * (.90)) -  discont;
+		studentTicket = (price * (.60)) - discont;
+		age = personAge;
+		student = studentID;
+		priceDay = "Normal Day Price";
+		park = "Testers Park - ";
+	}
+	
 	//Encapsulation (Setter/Getter)
 	private void setPriceDay(String priceDay) {
 		this.priceDay = priceDay;
@@ -33,15 +44,18 @@ public class TestersParkTicket extends TicketsParks{
 	public double getTicketPrice() {
 		
 		double priceTicket;
-		if (student == true) {
-			priceTicket = studentTicket;
-			System.out.println("Student Price (40% applied): $"+studentTicket);
-		}else if(age>=18) {
+		if(age>=18 && !student) {
 			priceTicket=adultTicket;
-			System.out.println("Adult Price: $"+adultTicket);
+			System.out.println("Adult Price: $"+adultTicket);		
+		}else if(age>=18 && student) {
+			priceTicket = studentTicket;
+			System.out.println("Student Price (50% applied): $"+studentTicket);		
+		}else if(age<18 && student) {
+			priceTicket = studentTicket * (0.8);
+			System.out.println("Child & Student Special Price : $"+priceTicket);	
 		}else {
-			priceTicket=childTicket;
-			System.out.println("Child Price (10% applied): $"+childTicket);
+			priceTicket = childTicket;
+			System.out.println("Child Price (20% applied): $"+childTicket);
 		}
 		
 		return priceTicket;

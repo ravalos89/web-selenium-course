@@ -6,7 +6,7 @@ public class TicketDesk {
 		
 		// Inputs	
 		double price = 100;
-		int age = 10;
+		int age = 20;
 		boolean isStudent = true;
 		
 		// Cool Park
@@ -15,7 +15,7 @@ public class TicketDesk {
 		ticket.getTicketPrice();
 		
 		// Testers Park
-		ticket = new TestersParkTicket(price, age, isStudent);
+		ticket = new TestersParkTicket(price, age, isStudent, 20);
 		ticket.printPriceDay();
 		ticket.getTicketPrice();
 		

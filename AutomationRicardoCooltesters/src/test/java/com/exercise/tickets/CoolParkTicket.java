@@ -33,14 +33,17 @@ public class CoolParkTicket extends TicketsParks{
 	public double getTicketPrice() {
 		
 		double priceTicket;
-		if (student == true) {
-			priceTicket = studentTicket;
-			System.out.println("Student Price (50% applied): $"+studentTicket);
-		}else if(age>=18) {
+		if(age>=18 && !student) {
 			priceTicket=adultTicket;
-			System.out.println("Adult Price: $"+adultTicket);
+			System.out.println("Adult Price: $"+adultTicket);		
+		}else if(age>=18 && student) {
+			priceTicket = studentTicket;
+			System.out.println("Student Price (50% applied): $"+studentTicket);		
+		}else if(age<18 && student) {
+			priceTicket = studentTicket * (0.8);
+			System.out.println("Child & Student Special Price : $"+priceTicket);	
 		}else {
-			priceTicket=childTicket;
+			priceTicket = childTicket;
 			System.out.println("Child Price (20% applied): $"+childTicket);
 		}
 		
