@@ -12,6 +12,7 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class TC001_Admin_SearchEmployee_Selenium {
 
@@ -61,6 +62,9 @@ public class TC001_Admin_SearchEmployee_Selenium {
 	String user = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
 	Assert.assertEquals(user, "Admin");
 	
+//	SoftAssert softAssert = new SoftAssert();
+//	softAssert.assertEquals(user, "Admon");
+	
 	// STEP 8 Log out
 	Reporter.log("Log out");
 	driver.findElement(By.xpath("//a[@id='welcome']")).click();
@@ -68,9 +72,11 @@ public class TC001_Admin_SearchEmployee_Selenium {
 	driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 	
 	// STEP 9 Close Browser
-	Reporter.log("Log out");
+	Reporter.log("Close Browser");
 	driver.close();
-
+	
+//	softAssert.assertAll();
+	
   }
 
   @AfterTest
