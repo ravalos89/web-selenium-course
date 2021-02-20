@@ -1,5 +1,7 @@
 package com.opensource.admin.qa;
 
+import java.io.FileNotFoundException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -16,13 +18,24 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 	SeleniumWrapper seleniumWrapper;
 	Login login;
 	UserManagement userManagement;
+	String username, password, row, column;
 
 	@BeforeTest
-	public void beforeTest() {
+	public void beforeTest() throws FileNotFoundException {
 		seleniumWrapper = new SeleniumWrapper(driver);
 		driver = seleniumWrapper.chromeDriverConnection();
 		login = new Login(driver);
 		userManagement = new UserManagement(driver);
+		
+		//Setup Data JSON
+//		this.username = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "username");
+//	    this.password = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "password");
+	    
+	    //Setup Data Excel
+	    this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
+	    this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
+	    this.row = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 2);
+	    this.column = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 3);
 	}
 
 	@Test
@@ -32,7 +45,7 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 		seleniumWrapper.launchBrowser(GlobalVariables.QA_URL);
 
 		// STEP 2 Enter Username and Password
-		login.loginOrange("Admin", "admin123");
+		login.loginOrange(username, password);
 		
 		// STEP 3 Validate that you have logged in successfully
 		userManagement.validateLogged();
@@ -42,10 +55,10 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 
 		// STEP 5 Search username in field "Username"
 		// STEP 6 Click Search
-		userManagement.searchUser("Admin", true);
+		userManagement.searchUser(username, true);
 
 		// STEP 7 Verify username exist in table
-		userManagement.validateValueFromSystemUsersTable("1", "2", "Admin");
+		userManagement.validateValueFromSystemUsersTable(row, column, username);
 
 		// STEP 8 Log out
 		login.logoutOrange();

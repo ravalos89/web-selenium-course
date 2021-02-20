@@ -1,0 +1,6 @@
+{
+  "TC001_Admin_SearchEmployee_Selenium_POM": {
+	  "username":"Admin",
+	  "password":"admin123"
+  }
+}
