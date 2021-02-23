@@ -43,13 +43,21 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
 		</dependency>
+		
+		<!-- Execute TestNG Jenkins -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>compile</scope>
+		</dependency>
 
 	</dependencies>
-	
-	   <build>
-  
+
+	<build>
+
 		<plugins>
-		
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -59,7 +67,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -69,11 +77,11 @@
 						<suiteXmlFile>src/test/resources/testsuites/QA_Regression.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
-				
+
 			</plugin>
-			
+
 		</plugins>
-		
+
 	</build>
 
 </project>
