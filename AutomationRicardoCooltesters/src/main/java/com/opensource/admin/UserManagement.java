@@ -10,7 +10,7 @@ public class UserManagement extends SeleniumWrapper{
 	By link_admin = By.xpath("//a[@id='menu_admin_viewAdminModule']");
 	By txt_search = By.xpath("//input[@id='searchSystemUser_userName']");
 	By btn_search = By.xpath("//input[@id='searchBtn']");
-	
+	By btn_add = By.xpath("//input[@id='btnAdd']");	
 	/*
 	 * Constructor
 	 * @author: Ricardo Avalos
@@ -64,9 +64,22 @@ public class UserManagement extends SeleniumWrapper{
 	 */
 	
 	public void validateValueFromSystemUsersTable(String row, String column, String expectedValue) {
+		sleep(2);
 		reportLog("Verify this value: "+expectedValue+" in System User Table");
 		String actualValue = getValueFromTable(row, column);
 		assertEquals(actualValue, expectedValue);
+	}
+	
+	/*
+	 * Click Add
+	 * @author Ricardo Avalos
+	 * @date 02/18/2021
+	 */
+	
+	public void clickAdd() {
+		reportLog("Click Add");
+		click(btn_add, "Add");
+		implicitlyWait(3);
 	}
 
 }

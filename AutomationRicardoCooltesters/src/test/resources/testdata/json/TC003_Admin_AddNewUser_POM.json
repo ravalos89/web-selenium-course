@@ -1,0 +1,6 @@
+{
+  "TC003_Admin_AddNewUser_POM": {
+	  "username":"Admin",
+	  "password":"admin123"
+  }
+}

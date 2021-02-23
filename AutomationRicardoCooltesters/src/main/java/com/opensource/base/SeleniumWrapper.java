@@ -491,5 +491,29 @@ public class SeleniumWrapper {
 			return null;
 		}
 	}
+	
+	/*
+	 * Random Number
+	 * @author Ricardo Avalos
+	 * @date 02/23/2021
+	 */
+	
+	public int randomNumber() {
+		return (int)(Math.random()*10000);
+	}
+	
+	/*
+	 * Sleep
+	 * @author Ricardo Avalos
+	 * @date 02/23/2021
+	 */
+	
+	public void sleep(int seg) {
+		try {
+			Thread.sleep(seg*1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
