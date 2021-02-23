@@ -26,8 +26,9 @@ public class UserManagement extends SeleniumWrapper{
 	 */
 	
 	public void validateLogged() {
-		reportLog("Validate Logged successfully");
+		reportLog("Validate Logged successfully");	
 		waitForElementPresent(link_admin);
+		takeScreenshot("ValidateLogged");
 	}
 	
 	/*
@@ -40,6 +41,7 @@ public class UserManagement extends SeleniumWrapper{
 		reportLog("Click Admin module");
 		click(link_admin, "Click Admin");
 		implicitlyWait(3);
+		takeScreenshot("ClickAdmin");
 	}
 	
 	/*
@@ -55,6 +57,7 @@ public class UserManagement extends SeleniumWrapper{
 			click(btn_search, "Click Button Search");	
 		}
 		implicitlyWait(3);
+		takeScreenshot("SearchUser");
 	}
 	
 	/*
@@ -67,6 +70,7 @@ public class UserManagement extends SeleniumWrapper{
 		sleep(2);
 		reportLog("Verify this value: "+expectedValue+" in System User Table");
 		String actualValue = getValueFromTable(row, column);
+		takeScreenshot("ValueUsersTable");
 		assertEquals(actualValue, expectedValue);
 	}
 	
@@ -78,8 +82,10 @@ public class UserManagement extends SeleniumWrapper{
 	
 	public void clickAdd() {
 		reportLog("Click Add");
+		takeScreenshot("BeforeClickAdd");
 		click(btn_add, "Add");
 		implicitlyWait(3);
+		takeScreenshot("AfterClickAdd");
 	}
 
 }

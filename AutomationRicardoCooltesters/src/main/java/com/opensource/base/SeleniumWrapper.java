@@ -75,10 +75,15 @@ public class SeleniumWrapper {
 	 * @throws IOException
 	 */
 	public void launchBrowser(String url) {
-		reportLog("Launch " + url + " applicaction Web");
-		driver.get(url);
-		driver.manage().window().maximize();
-		implicitlyWait(5);
+		try {
+			reportLog("Launch " + url + " applicaction Web");
+			driver.get(url);
+			driver.manage().window().maximize();
+			implicitlyWait(5);
+			takeScreenshot("launchApp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -433,19 +438,17 @@ public class SeleniumWrapper {
 
 	}
 
-	/**
+	/*
 	 * Take screenshot
 	 * 
 	 * @author Ricardo Avalos
-	 * @param locator
-	 * @return locator
 	 * @throws IOException
 	 */
-	public void takeScreenshot(String fileName) throws IOException {
+	public void takeScreenshot(String fileName){
 		try {
 			Screenshot screenshot = new AShot().takeScreenshot(driver);
-			ImageIO.write(screenshot.getImage(), "PNG", new File("./test-output/screenshots/" + fileName + ".png"));
-		} catch (IOException e) {
+			ImageIO.write(screenshot.getImage(), "PNG", new File(GlobalVariables.PATH_SCREENSHOTS + fileName + ".png"));
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 

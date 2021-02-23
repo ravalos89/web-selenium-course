@@ -29,9 +29,11 @@ public class AddUser extends SeleniumWrapper{
 		type(txt_newUsername, randomName, "Username Field");
 		type(txt_newPassword, GlobalVariables.STD_PASSWORD, "Password field");
 		type(txt_confirmPassword, GlobalVariables.STD_PASSWORD, "Confirm Password field");
+		takeScreenshot("FillCreateUser");
 		if(clickSave) {
 			click(btn_save, "Button Save");
 		}
+		takeScreenshot("AfterFillUser");
 		return randomName;
 	}
 }

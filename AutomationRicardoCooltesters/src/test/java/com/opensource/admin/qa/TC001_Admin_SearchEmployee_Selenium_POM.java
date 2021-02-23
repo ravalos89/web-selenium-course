@@ -39,7 +39,7 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 	}
 
 	@Test
-	public void TC001_Admin_SearchEmployee_Selenium_Test() {
+	public void TC001_Admin_SearchEmployee_Selenium_Test(){
 
 		// STEP 1 Open Browser "OrangeHRM" web page
 		seleniumWrapper.launchBrowser(GlobalVariables.QA_URL);

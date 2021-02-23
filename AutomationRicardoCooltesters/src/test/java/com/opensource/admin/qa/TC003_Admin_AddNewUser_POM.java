@@ -42,7 +42,7 @@ public class TC003_Admin_AddNewUser_POM {
 	}
 
 	@Test
-	public void TC003_Admin_AddNewUser_POM_Test() {
+	public void TC003_Admin_AddNewUser_POM_Test(){
 
 		// STEP 1 Open Browser "OrangeHRM" web page
 		seleniumWrapper.launchBrowser(GlobalVariables.QA_URL);

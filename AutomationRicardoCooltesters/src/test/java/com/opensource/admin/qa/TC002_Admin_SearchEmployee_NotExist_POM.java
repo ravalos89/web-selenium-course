@@ -39,7 +39,7 @@ public class TC002_Admin_SearchEmployee_NotExist_POM {
 	}
 
 	@Test
-	public void TC002_Admin_SearchEmployee_NotExist_POM_Test() {
+	public void TC002_Admin_SearchEmployee_NotExist_POM_Test(){
 
 		// STEP 1 Open Browser "OrangeHRM" web page
 		seleniumWrapper.launchBrowser(GlobalVariables.QA_URL);

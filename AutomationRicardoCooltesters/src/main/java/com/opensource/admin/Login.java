@@ -23,12 +23,14 @@ public class Login extends SeleniumWrapper{
 	 * @date 02/18/2021
 	 */
 	
-	public void loginOrange(String username, String password) {
+	public void loginOrange(String username, String password){
 		reportLog("Login into Orange HRM Portal");
 		waitForElementPresent(txt_username);
 		type(txt_username, username, "Username");
 		type(txt_password, password, "Password");
+		takeScreenshot("LoginOrange");
 		click(btn_login, "Button Login");
+		takeScreenshot("AfterClickLogin");
 		implicitlyWait(5);
 	}
 	
@@ -41,7 +43,9 @@ public class Login extends SeleniumWrapper{
 	public void logoutOrange() {
 		reportLog("Logout Orange HRM Portal");
 		click(btn_userWelcome, "Click Welcome User");
+		takeScreenshot("ClickWelcome");
 		click(btn_logout, "Click Logout");
+		takeScreenshot("ClickLogout");
 		implicitlyWait(5);
 	}
 	
