@@ -24,10 +24,11 @@ public class TicketDesk {
 		
 		// Arreglar el error ya que solo se debe aplicar un descuento y no puede ser estudiante o niño
 		// Agregar un constructor en ambas clases donde se aplique un descuento especial
-		// Hacer un metodo para obtener la suma de ambos tickets
+		// Hacer un metodo para obtener la suma de ambos tickets		
 
 	}
 	
+	//HW
 	public static double sumPark(double park1, double park2) {
 		return park1 + park2;
 	}

@@ -1,3 +1,9 @@
+/**
+ * Selenium wrapper Base class
+ * 
+ * @author Ricardo Avalos
+ */
+
 package com.opensource.base;
 
 import java.io.File;
@@ -33,18 +39,17 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 
-/**
- * Selenium wrapper Base class
- * 
- * @author Ricardo Avalos
- */
 
 public class SeleniumWrapper {
-
+	
 	private WebDriver driver;
+	ExtentTest extentTest;
 
 	/**
 	 * Constructor SeleniumWrapper Class @author Ricardo Avalos @param driver
@@ -65,6 +70,15 @@ public class SeleniumWrapper {
 		driver = new ChromeDriver();
 		return driver;
 	}
+	
+	/*
+	 * Initialize Extent Test (Report)
+	 * 
+	 * @author ricardo.avalos
+	 */
+	public void initializeExtentTest(ExtentTest extentTest) {
+		this.extentTest = extentTest;
+	}
 
 	/**
 	 * Launch Browser
@@ -80,8 +94,9 @@ public class SeleniumWrapper {
 			driver.get(url);
 			driver.manage().window().maximize();
 			implicitlyWait(5);
-			takeScreenshot("launchApp");
+			extentTest.log(LogStatus.PASS,"Launch Browser" + extentTest.addScreenCapture(takeScreenshot("lauchBrowser")));
 		} catch (Exception e) {
+			extentTest.log(LogStatus.FAIL,"Launch Browser" + extentTest.addScreenCapture(takeScreenshot("lauchBrowser")));
 			e.printStackTrace();
 		}
 	}
@@ -444,12 +459,15 @@ public class SeleniumWrapper {
 	 * @author Ricardo Avalos
 	 * @throws IOException
 	 */
-	public void takeScreenshot(String fileName){
+	public String takeScreenshot(String fileName){
 		try {
+			String pathFileName= GlobalVariables.PATH_SCREENSHOTS + fileName + ".png";
 			Screenshot screenshot = new AShot().takeScreenshot(driver);
-			ImageIO.write(screenshot.getImage(), "PNG", new File(GlobalVariables.PATH_SCREENSHOTS + fileName + ".png"));
+			ImageIO.write(screenshot.getImage(), "PNG", new File(pathFileName));
+			return pathFileName;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
 		}
 
 	}
@@ -472,7 +490,7 @@ public class SeleniumWrapper {
 	/*
 	 * Get Value from Excel
 	 * @author Ricardo Avalos 
-	 * @date 02/18/2021
+	 * @date 02/18/2019
 	 */
 	public String getCellData(String excelName, int row, int column) {
 		try {

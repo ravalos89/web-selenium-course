@@ -7,5 +7,5 @@ public class GlobalVariables {
 	public static final String PATH_EXCEL_DATA = "./src/test/resources/testdata/excel/";
 	public static final String STD_PASSWORD = "admin123";
 	public static final String STD_TEST_NAME = "Automation";
-	public static final String PATH_SCREENSHOTS = "./test-output/screenshots/";
+	public static final String PATH_SCREENSHOTS = System.getProperty("user.dir")+"/test-output/screenshots/";
 }

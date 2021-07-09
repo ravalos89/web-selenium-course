@@ -19,6 +19,7 @@ public class TestersParkTicket extends TicketsParks{
 		park = "Testers Park - ";
 	}
 	
+	// Tarea
 	public TestersParkTicket(double price, int personAge, boolean studentID, int discont) {
 		super();
 		adultTicket = price - discont;
@@ -49,7 +50,8 @@ public class TestersParkTicket extends TicketsParks{
 			System.out.println("Adult Price: $"+adultTicket);		
 		}else if(age>=18 && student) {
 			priceTicket = studentTicket;
-			System.out.println("Student Price (50% applied): $"+studentTicket);		
+			System.out.println("Student Price (50% applied): $"+studentTicket);
+			//HW
 		}else if(age<18 && student) {
 			priceTicket = studentTicket * (0.8);
 			System.out.println("Child & Student Special Price : $"+priceTicket);	

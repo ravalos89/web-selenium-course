@@ -11,6 +11,8 @@ import com.opensource.admin.Login;
 import com.opensource.admin.UserManagement;
 import com.opensource.base.GlobalVariables;
 import com.opensource.base.SeleniumWrapper;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 
 public class TC001_Admin_SearchEmployee_Selenium_POM {
 
@@ -19,6 +21,8 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 	Login login;
 	UserManagement userManagement;
 	String username, password, row, column;
+	ExtentReports reports;
+	ExtentTest extentTest;
 
 	@BeforeTest
 	public void beforeTest() throws FileNotFoundException {
@@ -27,9 +31,14 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 		login = new Login(driver);
 		userManagement = new UserManagement(driver);
 		
+		// Extent Report
+		reports = new ExtentReports("C:\\Users\\ravalos\\Documents\\Evidences\\test.html");
+		extentTest = reports.startTest(this.getClass().getSimpleName());
+		seleniumWrapper.initializeExtentTest(extentTest);
+		
 		//Setup Data JSON
-//		this.username = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "username");
-//	    this.password = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "password");
+		this.username = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "username");
+	    this.password = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "password");
 	    
 	    //Setup Data Excel
 	    this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
@@ -70,6 +79,10 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 
 		// STEP 9 Close Browser
 		seleniumWrapper.closeBrowser();
+		
+		// Extent Report
+		reports.endTest(extentTest);
+		reports.flush();
 	}
 
 }
