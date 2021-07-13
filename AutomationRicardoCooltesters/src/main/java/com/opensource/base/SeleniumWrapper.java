@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -535,6 +537,27 @@ public class SeleniumWrapper {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean validateSortOrderPayerColumn(By locator) {
+		
+		ArrayList<String> actualList = new ArrayList<>();
+		ArrayList<String> sortedList = new ArrayList<>();
+		
+		// Store values in array list
+		List<WebElement> elementList= driver.findElements(locator);
+		for(WebElement webElement : elementList){
+			actualList.add(webElement.getText());
+		}
+		
+		// Store values from actualList to SortedList
+		for(String strValue : actualList){
+			sortedList.add(strValue);
+		}
+		
+		// Sort alphabetically and compare with actuaList
+		Collections.sort(sortedList);
+		return sortedList.equals(actualList);		
 	}
 
 }
