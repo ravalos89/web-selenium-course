@@ -539,7 +539,7 @@ public class SeleniumWrapper {
 		}
 	}
 	
-	public boolean validateSortOrderPayerColumn(By locator) {
+	public boolean validateSortOrderColumn(By locator) {
 		
 		ArrayList<String> actualList = new ArrayList<>();
 		ArrayList<String> sortedList = new ArrayList<>();
