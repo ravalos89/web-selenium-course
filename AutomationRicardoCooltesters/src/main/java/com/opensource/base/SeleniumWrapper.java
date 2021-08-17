@@ -34,6 +34,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -109,7 +110,12 @@ public class SeleniumWrapper {
 	 * @author ricardo.avalos
 	 */
 	public void implicitlyWait(int seconds) {
-		driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+		try {
+			driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+		} catch(TimeoutException e) {
+			extentTest.log(LogStatus.FAIL,"Launch Browser" + extentTest.addScreenCapture(takeScreenshot("Timeout error")));
+		}
+		
 	}
 
 	/**
@@ -558,6 +564,42 @@ public class SeleniumWrapper {
 		// Sort alphabetically and compare with actuaList
 		Collections.sort(sortedList);
 		return sortedList.equals(actualList);		
+	}
+	
+	/**
+	 * Waits for JS on page to in ready state. If page has JS to load, use this
+	 * method for page load
+	 * 
+	 * @param driver
+	 * @param timeout
+	 */
+	public static void waitForJSLoad(WebDriver driver, int timeout) {
+		new WebDriverWait(driver, timeout).until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd)
+				.executeScript("return document.readyState").equals("complete"));
+	}
+
+	/**
+	 * Waits for JQuery on page to be active. If page has Jquery on load, use this
+	 * method for page load
+	 * 
+	 * @param driver
+	 * @param timeout
+	 */
+	public static void waitForJQuery(WebDriver driver, int timeout) {
+		new WebDriverWait(driver, timeout).until((ExpectedCondition<Boolean>) wd -> ((Boolean) ((JavascriptExecutor) wd)
+				.executeScript("return window.jQuery != undefined && jQuery.active === 0")));
+	}
+
+	/**
+	 * Waits for JS on page to in ready state. Waits for JQuery on page to be
+	 * active. If the page has both JQuery and JS on load use this method
+	 * 
+	 * @param driver
+	 * @param timeout
+	 */
+	public static void waitForJSJQuery(WebDriver driver, int timeout) {
+		waitForJSLoad(driver, timeout);
+		waitForJQuery(driver, timeout);
 	}
 
 }
