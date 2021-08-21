@@ -433,12 +433,14 @@ public class SeleniumWrapper {
 	 * @return N/A
 	 * @throws AssertionError
 	 */
-	public void softAssertEquals(String actualValue, String expectedValue) throws AssertionError {
+	public <T> SoftAssert softAssertEquals(T actualValue, T expectedValue) throws AssertionError {
 		try {
 			SoftAssert softAssert = new SoftAssert();
 			softAssert.assertEquals(actualValue, expectedValue);
+			return softAssert;
 		} catch (AssertionError e) {
 			Assert.fail("Not able to Assert " + actualValue);
+			return null;
 		}
 
 	}

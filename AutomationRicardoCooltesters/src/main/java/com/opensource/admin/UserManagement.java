@@ -2,6 +2,7 @@ package com.opensource.admin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.asserts.SoftAssert;
 
 import com.opensource.base.SeleniumWrapper;
 
@@ -72,6 +73,7 @@ public class UserManagement extends SeleniumWrapper{
 		String actualValue = getValueFromTable(row, column);
 		takeScreenshot("ValueUsersTable");
 		assertEquals(actualValue, expectedValue);
+		SoftAssert soft = softAssertEquals("", "");
 	}
 	
 	/*

@@ -13,6 +13,7 @@ import com.opensource.base.GlobalVariables;
 import com.opensource.base.SeleniumWrapper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class TC001_Admin_SearchEmployee_Selenium_POM {
 
@@ -52,6 +53,7 @@ public class TC001_Admin_SearchEmployee_Selenium_POM {
 
 		// STEP 1 Open Browser "OrangeHRM" web page
 		seleniumWrapper.launchBrowser(GlobalVariables.QA_URL);
+		extentTest.log(LogStatus.PASS,"Launch Browser" + extentTest.addScreenCapture(seleniumWrapper.takeScreenshot("lauchBrowser")));
 
 		// STEP 2 Enter Username and Password
 		login.loginOrange(username, password);
